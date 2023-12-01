@@ -18,7 +18,7 @@ public class MainManager : MonoBehaviour
 
     void Start()
     {
-        isGameActive = true;
+        //isGameActive = true;
         Lives = 3;
         CurrentPlayerName.text = PlayerDataHandle.Instance.PlayerName;
         LifeText.text = "Life: " + Lives;
@@ -27,7 +27,7 @@ public class MainManager : MonoBehaviour
 
     public void GameOver()
     {
-        isGameActive = false;
+        //isGameActive = false;
         GameOverMenu.gameObject.SetActive(true);
     }
 
