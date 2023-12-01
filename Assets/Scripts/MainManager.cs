@@ -1,22 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
+using System.IO;
 
 public class MainManager : MonoBehaviour
 {
-    public static MainManager Instance { get; private set; }
+    public TextMeshProUGUI CurrentPlayerName;
 
-    public string PlayerName;
-
-    private void Awake()
+    void Start()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+        CurrentPlayerName.text = PlayerDataHandle.Instance.PlayerName;
     }
 }
