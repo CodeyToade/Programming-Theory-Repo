@@ -11,9 +11,9 @@ public class MainManager : MonoBehaviour
     private bool isGameActive;
     public TextMeshProUGUI CurrentPlayerName;
     public TextMeshProUGUI LifeText;
-    public TextMeshProUGUI LifetimeText;
+    public TextMeshProUGUI ScoreText;
     private float Lives;
-    private float Time;
+    private float Score;
     public GameObject GameOverMenu;
 
     void Start()
@@ -22,7 +22,7 @@ public class MainManager : MonoBehaviour
         Lives = 3;
         CurrentPlayerName.text = PlayerDataHandle.Instance.PlayerName;
         LifeText.text = "Life: " + Lives;
-        LifetimeText.text = "Lifetime: " + Time;
+        ScoreText.text = "Score: " + Score;
     }
 
     public void GameOver()
