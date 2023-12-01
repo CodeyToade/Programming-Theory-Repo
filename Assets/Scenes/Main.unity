@@ -377,6 +377,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentPlayerName: {fileID: 1592519400}
+  LifeText: {fileID: 1159307699}
+  LifetimeText: {fileID: 1629495269}
   GameOverMenu: {fileID: 218755021}
 --- !u!4 &940389728
 Transform:
