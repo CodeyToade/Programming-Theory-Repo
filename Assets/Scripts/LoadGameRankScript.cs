@@ -9,15 +9,15 @@ public class LoadGameRankScript : MonoBehaviour
 {
     public TextMeshProUGUI BestPlayerName;
 
-    private static int BestScore;
-    private static string BestPlayer;
+    protected static int BestScore;
+    protected static string BestPlayer;
 
     private void Awake()
     {
         LoadGameRank();
     }
 
-    private void SetBestPlayer()
+    protected void SetBestPlayer()
     {
         if (BestPlayer == null && BestScore == 0)
         {
@@ -45,7 +45,7 @@ public class LoadGameRankScript : MonoBehaviour
     }
 
     [System.Serializable]
-    class SaveData
+    protected class SaveData
     {
         public int HighestScore;
         public string TheBestPlayer;

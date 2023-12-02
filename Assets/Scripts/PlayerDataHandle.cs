@@ -8,6 +8,8 @@ public class PlayerDataHandle : MonoBehaviour
 
     public string PlayerName;
 
+    public int Score;
+
     private void Awake()
     {
         if (Instance != null)
