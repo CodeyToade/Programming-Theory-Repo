@@ -7,10 +7,10 @@ using System.IO;
 
 public class LoadGameRankScript : MonoBehaviour
 {
-    public TextMeshProUGUI BestPlayerName;
+    public TextMeshProUGUI bestPlayerName;
 
-    protected static int BestScore;
-    protected static string BestPlayer;
+    protected static int bestScore;
+    protected static string bestPlayer;
 
     private void Awake()
     {
@@ -19,13 +19,13 @@ public class LoadGameRankScript : MonoBehaviour
 
     protected void SetBestPlayer()
     {
-        if (BestPlayer == null && BestScore == 0)
+        if (bestPlayer == null && bestScore == 0)
         {
-            BestPlayerName.text = "";
+            bestPlayerName.text = "";
         }
         else
         {
-            BestPlayerName.text = $"Best Score - {BestPlayer}: {BestScore}";
+            bestPlayerName.text = $"Best Score - {bestPlayer}: {bestScore}";
         }
     }
 
@@ -38,8 +38,8 @@ public class LoadGameRankScript : MonoBehaviour
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
 
-            BestPlayer = data.TheBestPlayer;
-            BestScore = data.HighestScore;
+            bestPlayer = data.TheBestPlayer;
+            bestScore = data.HighestScore;
             SetBestPlayer();
         }
     }

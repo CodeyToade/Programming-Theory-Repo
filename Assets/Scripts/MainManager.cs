@@ -10,52 +10,59 @@ public class MainManager : LoadGameRankScript
 {
     private bool isGameActive;
 
-    public TextMeshProUGUI CurrentPlayerName;
-    public TextMeshProUGUI LifeText;
-    public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI currentPlayerName;
+    public TextMeshProUGUI lifeText;
+    public TextMeshProUGUI scoreText;
     //public TextMeshProUGUI BestPlayerNameAndScore;
 
-    public GameObject GameOverMenu;
+    public GameObject gameOverMenu;
 
     private float lives;
     private float score;
 
-    //private static int BestScore;
-    //private static string BestPlayer;
-
-    private void Awake()
-    {
-        LoadGameRank();
-    }
+    //private void Awake()
+    //{
+        //LoadGameRank();
+    //}
 
     void Start()
     {
         //isGameActive = true;
        lives = 3;
-        CurrentPlayerName.text = PlayerDataHandle.Instance.PlayerName;
-        LifeText.text = "Life: " + lives;
-        ScoreText.text = "Score: " + score;
+        currentPlayerName.text = PlayerDataHandle.Instance.PlayerName;
+        lifeText.text = "Life: " + lives;
+        scoreText.text = "Score: " + score;
 
-        //SetBestPlayer();
+        SetBestPlayer();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            GameOver();
+        }
+    }
+
+    //Game Completion
+    #region
     public void GameOver()
     {
-        //isGameActive = false;
-        GameOverMenu.gameObject.SetActive(true);
-        CheckBestPlayer();
+            //isGameActive = false;
+            gameOverMenu.gameObject.SetActive(true);
+            CheckBestPlayer();
     }
 
     private void CheckBestPlayer()
     {
         int CurrentScore = PlayerDataHandle.Instance.Score;
 
-        if (CurrentScore > BestScore)
+        if (CurrentScore > bestScore)
         {
-            BestPlayer = PlayerDataHandle.Instance.PlayerName;
-            BestScore = CurrentScore;
+            bestPlayer = PlayerDataHandle.Instance.PlayerName;
+            bestScore = CurrentScore;
 
-            BestPlayerName.text = $"Best Score - {BestPlayer}: {BestScore}";
+            bestPlayerName.text = $"Best Score - {bestPlayer}: {bestScore}";
         }
     }
 
@@ -74,4 +81,5 @@ public class MainManager : LoadGameRankScript
     {
         SceneManager.LoadScene(0);
     }
+    #endregion
 }
