@@ -14,6 +14,8 @@ public class MainManager : LoadGameRankScript
     public TextMeshProUGUI LifeText;
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI BestPlayerNameAndScore;
+
+    public GameObject[] rocketPrefabs;
     public GameObject GameOverMenu;
 
     private float Lives;
