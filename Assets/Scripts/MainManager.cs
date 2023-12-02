@@ -13,13 +13,12 @@ public class MainManager : LoadGameRankScript
     public TextMeshProUGUI CurrentPlayerName;
     public TextMeshProUGUI LifeText;
     public TextMeshProUGUI ScoreText;
-    public TextMeshProUGUI BestPlayerNameAndScore;
+    //public TextMeshProUGUI BestPlayerNameAndScore;
 
-    public GameObject[] rocketPrefabs;
     public GameObject GameOverMenu;
 
-    private float Lives;
-    private float Score;
+    private float lives;
+    private float score;
 
     //private static int BestScore;
     //private static string BestPlayer;
@@ -32,10 +31,10 @@ public class MainManager : LoadGameRankScript
     void Start()
     {
         //isGameActive = true;
-        Lives = 3;
+       lives = 3;
         CurrentPlayerName.text = PlayerDataHandle.Instance.PlayerName;
-        LifeText.text = "Life: " + Lives;
-        ScoreText.text = "Score: " + Score;
+        LifeText.text = "Life: " + lives;
+        ScoreText.text = "Score: " + score;
 
         //SetBestPlayer();
     }
@@ -56,7 +55,7 @@ public class MainManager : LoadGameRankScript
             BestPlayer = PlayerDataHandle.Instance.PlayerName;
             BestScore = CurrentScore;
 
-            BestPlayerNameAndScore.text = $"Best Score - {BestPlayer}: {BestScore}";
+            BestPlayerName.text = $"Best Score - {BestPlayer}: {BestScore}";
         }
     }
 
