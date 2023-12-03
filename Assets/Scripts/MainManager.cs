@@ -8,7 +8,7 @@ using System.IO;
 
 public class MainManager : LoadGameRankScript
 {
-    private bool isGameActive;
+    public bool isGameOver;
 
     public TextMeshProUGUI currentPlayerName;
     public TextMeshProUGUI lifeText;
@@ -20,15 +20,15 @@ public class MainManager : LoadGameRankScript
     private float lives;
     private float score;
 
-    //private void Awake()
-    //{
-        //LoadGameRank();
-    //}
+    private void Awake()
+    {
+        LoadGameRank();
+    }
 
     void Start()
     {
-        //isGameActive = true;
-       lives = 3;
+        isGameOver = false;
+        lives = 3;
         currentPlayerName.text = PlayerDataHandle.Instance.PlayerName;
         lifeText.text = "Life: " + lives;
         scoreText.text = "Score: " + score;
@@ -48,7 +48,7 @@ public class MainManager : LoadGameRankScript
     #region
     public void GameOver()
     {
-            //isGameActive = false;
+            isGameOver = true;
             gameOverMenu.gameObject.SetActive(true);
             CheckBestPlayer();
     }
