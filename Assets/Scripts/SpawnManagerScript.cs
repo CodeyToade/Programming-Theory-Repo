@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnManagerScript : MonoBehaviour
 {
     public GameObject[] rocketPrefabs;
+    private MainManager mainManager;
 
     private float spawnRangeX = 1;
     private float spawnRangeZ = 1;
@@ -12,7 +13,7 @@ public class SpawnManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        mainManager = GameObject.Find("MainManager").GetComponent<MainManager>();
     }
 
     // Update is called once per frame
