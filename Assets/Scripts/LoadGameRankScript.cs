@@ -9,7 +9,7 @@ public class LoadGameRankScript : MonoBehaviour
 {
     public TextMeshProUGUI bestPlayerName;
 
-    protected static int bestScore;
+    protected static int bestTime;
     protected static string bestPlayer;
 
     private void Awake()
@@ -17,15 +17,15 @@ public class LoadGameRankScript : MonoBehaviour
         LoadGameRank();
     }
 
-    protected void SetBestPlayer()
+    public virtual void SetBestPlayer()
     {
-        if (bestPlayer == null && bestScore == 0)
+        if (bestPlayer == null && bestTime == 0)
         {
             bestPlayerName.text = "";
         }
         else
         {
-            bestPlayerName.text = $"Best Score - {bestPlayer}: {bestScore}";
+            bestPlayerName.text = $"Best Time - {bestPlayer}: {bestTime}";
         }
     }
 
@@ -39,7 +39,7 @@ public class LoadGameRankScript : MonoBehaviour
             SaveData data = JsonUtility.FromJson<SaveData>(json);
 
             bestPlayer = data.TheBestPlayer;
-            bestScore = data.HighestScore;
+            bestTime = data.MostTime;
             SetBestPlayer();
         }
     }
@@ -47,7 +47,7 @@ public class LoadGameRankScript : MonoBehaviour
     [System.Serializable]
     protected class SaveData
     {
-        public int HighestScore;
+        public int MostTime;
         public string TheBestPlayer;
     }
 }

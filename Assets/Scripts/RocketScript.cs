@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RocketScript : MonoBehaviour
 {
-    [SerializeField] private float yRange = 0;
     private MainManager mainManager;
 
     // Start is called before the first frame update
@@ -13,12 +12,13 @@ public class RocketScript : MonoBehaviour
         mainManager = GameObject.Find("MainManager").GetComponent<MainManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        if (transform.position.y < yRange)
+        if (other.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            mainManager.UpdateLife(-1);
         }
+
+        Destroy(gameObject);
     }
 }

@@ -6,19 +6,23 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using System.IO;
 
-public class MainManager : LoadGameRankScript
+public class MainManager : LoadGameRankScript //Inheritance
 {
+    #region Variables
+
     public bool isGameOver;
 
     public TextMeshProUGUI currentPlayerName;
     public TextMeshProUGUI lifeText;
-    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI timeText;
     //public TextMeshProUGUI BestPlayerNameAndScore;
 
     public GameObject gameOverMenu;
 
     private float lives;
-    private float score;
+    private float timeAlive;
+
+    #endregion
 
     private void Awake()
     {
@@ -28,50 +32,54 @@ public class MainManager : LoadGameRankScript
     void Start()
     {
         isGameOver = false;
-        lives = 3;
         currentPlayerName.text = PlayerDataHandle.Instance.PlayerName;
-        lifeText.text = "Life: " + lives;
-        scoreText.text = "Score: " + score;
+        UpdateLife(3);
+        timeText.text = "Time Alive: " + timeAlive;
 
         SetBestPlayer();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (lives <= 0)
         {
             GameOver();
         }
     }
+    
+    public void UpdateLife(int lifeToAdd)
+    {
+        lives += lifeToAdd;
+        lifeText.text = "Life: " + lives;
+    }
 
-    //Game Completion
-    #region
+    #region Game Completion
     public void GameOver()
     {
             isGameOver = true;
             gameOverMenu.gameObject.SetActive(true);
-            CheckBestPlayer();
+            SetBestPlayer();
     }
 
-    private void CheckBestPlayer()
+    public override void SetBestPlayer() //Polymorphism
     {
         int CurrentScore = PlayerDataHandle.Instance.Score;
 
-        if (CurrentScore > bestScore)
+        if (CurrentScore > bestTime)
         {
             bestPlayer = PlayerDataHandle.Instance.PlayerName;
-            bestScore = CurrentScore;
+            bestTime = CurrentScore;
 
-            bestPlayerName.text = $"Best Score - {bestPlayer}: {bestScore}";
+            bestPlayerName.text = $"Best Score - {bestPlayer}: {bestTime}";
         }
     }
 
-    public void SaveGameRank(string bestPlayerName, int bestPlayerScore)
+    public void SaveGameRank(string bestPlayerName, int bestPlayerTime)
     {
         SaveData data = new SaveData();
 
         data.TheBestPlayer = bestPlayerName;
-        data.HighestScore = bestPlayerScore;
+        data.MostTime = bestPlayerTime;
 
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
