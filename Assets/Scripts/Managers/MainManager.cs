@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.IO;
@@ -14,13 +11,10 @@ public class MainManager : LoadGameRankScript //Inheritance
 
     public TextMeshProUGUI currentPlayerName;
     public TextMeshProUGUI lifeText;
-    public TextMeshProUGUI timeText;
-    //public TextMeshProUGUI BestPlayerNameAndScore;
 
     public GameObject gameOverMenu;
 
     private float lives;
-    private float timeAlive;
 
     #endregion
 
@@ -33,15 +27,14 @@ public class MainManager : LoadGameRankScript //Inheritance
     {
         isGameOver = false;
         currentPlayerName.text = PlayerDataHandle.Instance.PlayerName;
-        UpdateLife(3);
-        timeText.text = "Time Alive: " + timeAlive;
-
         SetBestPlayer();
+        UpdateLife(3);
+        EventManager.OnTimerStart();
     }
 
     private void Update()
     {
-        if (lives <= 0)
+        if (lives <= 0 || Input.GetKeyDown(KeyCode.P))
         {
             GameOver();
         }
@@ -56,9 +49,10 @@ public class MainManager : LoadGameRankScript //Inheritance
     #region Game Completion
     public void GameOver()
     {
-            isGameOver = true;
-            gameOverMenu.gameObject.SetActive(true);
-            SetBestPlayer();
+        EventManager.OnTimerStop();
+        isGameOver = true;
+        gameOverMenu.gameObject.SetActive(true);
+        SetBestPlayer();
     }
 
     public override void SetBestPlayer() //Polymorphism
