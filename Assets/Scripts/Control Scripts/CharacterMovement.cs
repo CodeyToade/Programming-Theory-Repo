@@ -35,6 +35,10 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private int maxNumberOfJumps = 2;
 
     #endregion
+    #region Variables: VFX
+    private AudioSource playerAudio;
+    public AudioClip jumpSound;
+    #endregion
 
     private void Awake()
     {
@@ -45,6 +49,7 @@ public class CharacterMovement : MonoBehaviour
     void Start()
     {
         mainManager = GameObject.Find("MainManager").GetComponent<MainManager>();
+        playerAudio = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -100,6 +105,8 @@ public class CharacterMovement : MonoBehaviour
         _numberOfJumps++;
         //_velocity = jumpPower;
         _velocity = jumpPower / _numberOfJumps;
+
+        playerAudio.PlayOneShot(jumpSound, 1.0f);
     }
 
     private IEnumerator WaitForLanding()
