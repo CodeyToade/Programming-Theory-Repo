@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerDataHandle : MonoBehaviour
 {
-    public static PlayerDataHandle Instance { get; private set; }
+    public static PlayerDataHandle Instance { get; private set; } //ENCAPSULATION
 
     public string PlayerName;
 

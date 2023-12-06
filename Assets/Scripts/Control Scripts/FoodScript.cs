@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodScript : RocketScript //Inheritance
+public class FoodScript : RocketScript //INHERITANCE
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void OnTriggerEnter(Collider other) //POLYMORPHISM
     {
-        
-    }
+        if (other.CompareTag("Player"))
+        {
+            mainManager.UpdateLife(1);
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Destroy(gameObject);
     }
 }
