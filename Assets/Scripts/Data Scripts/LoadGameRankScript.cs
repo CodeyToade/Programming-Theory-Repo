@@ -6,8 +6,8 @@ public class LoadGameRankScript : MonoBehaviour
 {
     public TextMeshProUGUI bestPlayerName;
 
-    protected static int bestTime;
-    protected static string bestPlayer;
+    private static int bestTime;
+    private static string bestPlayer;
 
     private void Awake()
     {

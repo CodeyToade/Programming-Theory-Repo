@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SpawnManagerScript : MonoBehaviour
 {
-    public GameObject[] rocketPrefabs;
+    public GameObject[] fallingPrefabs;
     private MainManager mainManager;
 
     private float spawnRangeX = 19;
@@ -25,8 +25,8 @@ public class SpawnManagerScript : MonoBehaviour
             for (int i = 0; i < 8; i++)
             {
                 Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), 20, Random.Range(-spawnRangeZ, spawnRangeZ));
-                int rocketIndex = Random.Range(0, rocketPrefabs.Length);
-                Instantiate(rocketPrefabs[rocketIndex], spawnPos, rocketPrefabs[rocketIndex].transform.rotation);
+                int rocketIndex = Random.Range(0, fallingPrefabs.Length);
+                Instantiate(fallingPrefabs[rocketIndex], spawnPos, fallingPrefabs[rocketIndex].transform.rotation);
             }
         }
     }

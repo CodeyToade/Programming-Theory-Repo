@@ -62,7 +62,7 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    private void ApplyGravity()
+    private void ApplyGravity() //Abstraction
     {
         if (IsGrounded() && _velocity < 0.0f)
         {
@@ -75,7 +75,7 @@ public class CharacterMovement : MonoBehaviour
         }
     }
     
-    private void ApplyRotation()
+    private void ApplyRotation() //Abstraction
     {
         if (_input.sqrMagnitude == 0) return;
 
@@ -85,7 +85,7 @@ public class CharacterMovement : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
-    private void ApplyMovement()
+    private void ApplyMovement() //Abstraction
     {
         _characterController.Move(_direction * speed * Time.deltaTime);
     }

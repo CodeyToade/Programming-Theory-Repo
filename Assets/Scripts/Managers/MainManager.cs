@@ -27,10 +27,6 @@ public class MainManager : MonoBehaviour
     private void Awake()
     {
         LoadGameRank();
-    }
-
-    void Start()
-    {
         isGameOver = false;
         currentPlayerName.text = PlayerDataHandle.Instance.PlayerName;
         timer = GameObject.Find("Time Text").GetComponent<Timer>();

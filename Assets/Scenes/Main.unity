@@ -1069,11 +1069,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 932a660f18fff49409602093dd1c62bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rocketPrefabs:
-  - {fileID: 2207290366474563335, guid: 935ee668e459e70478991daef2f7c381, type: 3}
+  fallingPrefabs:
   - {fileID: 1515051210473653600, guid: ca77473f7e4b2b84a9742b8fad24c595, type: 3}
-  - {fileID: 1793630148555630734, guid: ebbbabecc84c0224cab9b0c466c0d82d, type: 3}
+  - {fileID: 2207290366474563335, guid: 935ee668e459e70478991daef2f7c381, type: 3}
   - {fileID: 1447011094464597455, guid: d81f6c710db780841b79a3c3c89d91a5, type: 3}
+  - {fileID: 1793630148555630734, guid: ebbbabecc84c0224cab9b0c466c0d82d, type: 3}
+  - {fileID: 3122381541570734502, guid: 353e9fee2885fd540b61d9f59df9d720, type: 3}
+  - {fileID: 3362105685237434566, guid: dcae74e20e992f94da55a8948075e7a5, type: 3}
   startDelay: 2
   spawnInterval: 1.5
 --- !u!1 &971522810
