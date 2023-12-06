@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using System.IO;
 
-public class MainManager : LoadGameRankScript //Inheritance
+public class MainManager : MonoBehaviour
 {
     #region Variables
 
@@ -11,10 +11,16 @@ public class MainManager : LoadGameRankScript //Inheritance
 
     public TextMeshProUGUI currentPlayerName;
     public TextMeshProUGUI lifeText;
+    public TextMeshProUGUI bestPlayerNameAndTime;
 
     public GameObject gameOverMenu;
 
+    private Timer timer;
+
     private float lives;
+
+    private static int bestTime;
+    private static string bestPlayerName;
 
     #endregion
 
@@ -27,6 +33,7 @@ public class MainManager : LoadGameRankScript //Inheritance
     {
         isGameOver = false;
         currentPlayerName.text = PlayerDataHandle.Instance.PlayerName;
+        timer = GameObject.Find("Time Text").GetComponent<Timer>();
         SetBestPlayer();
         UpdateLife(3);
         EventManager.OnTimerStart();
@@ -51,21 +58,37 @@ public class MainManager : LoadGameRankScript //Inheritance
     {
         EventManager.OnTimerStop();
         isGameOver = true;
+        CheckBestPlayer();
         gameOverMenu.gameObject.SetActive(true);
-        SetBestPlayer();
     }
 
-    public override void SetBestPlayer() //Polymorphism
+    private void CheckBestPlayer()
     {
-        int CurrentScore = PlayerDataHandle.Instance.Score;
+        int CurrentTime = (int)timer.timeToDisplay;
 
-        if (CurrentScore > bestTime)
+        if (CurrentTime > bestTime)
         {
-            bestPlayer = PlayerDataHandle.Instance.PlayerName;
-            bestTime = CurrentScore;
+            bestPlayerName = PlayerDataHandle.Instance.PlayerName;
+            bestTime = CurrentTime;
 
-            bestPlayerName.text = $"Best Score - {bestPlayer}: {bestTime}";
+            bestPlayerNameAndTime.text = $"Best Time - {bestPlayerName}: {bestTime}";
+
+            SaveGameRank(bestPlayerName, bestTime);
         }
+    }
+
+    
+    private void SetBestPlayer()
+    {
+        if (bestPlayerName == null && bestTime == 0)
+        {
+            bestPlayerNameAndTime.text = "";
+        }
+        else
+        {
+            bestPlayerNameAndTime.text = $"Best Score - {bestPlayerName}: {bestTime}";
+        }
+
     }
 
     public void SaveGameRank(string bestPlayerName, int bestPlayerTime)
@@ -79,9 +102,31 @@ public class MainManager : LoadGameRankScript //Inheritance
         File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
     }
 
+    public void LoadGameRank()
+    {
+        string path = Application.persistentDataPath + "/savefile.json";
+
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            SaveData data = JsonUtility.FromJson<SaveData>(json);
+
+            bestPlayerName = data.TheBestPlayer;
+            bestTime = data.MostTime;
+            SetBestPlayer();
+        }
+    }
+
     public void ReturnToMenu()
     {
         SceneManager.LoadScene(0);
     }
     #endregion
+
+    [System.Serializable]
+    protected class SaveData
+    {
+        public int MostTime;
+        public string TheBestPlayer;
+    }
 }

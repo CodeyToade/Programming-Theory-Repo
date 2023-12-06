@@ -6,7 +6,7 @@ public class PlayerDataHandle : MonoBehaviour
 
     public string PlayerName;
 
-    public int Score;
+    public int Time;
 
     private void Awake()
     {

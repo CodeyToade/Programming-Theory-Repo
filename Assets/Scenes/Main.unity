@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5cbdf6b2a6caba4885719d15a5ab2e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bestPlayerName: {fileID: 0}
+  bestPlayerName: {fileID: 1999235159}
 --- !u!1 &218755021
 GameObject:
   m_ObjectHideFlags: 0
@@ -1005,10 +1005,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6387eabac56ae45a081ad06a4164f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bestPlayerName: {fileID: 1999235159}
   isGameOver: 0
   currentPlayerName: {fileID: 1592519400}
   lifeText: {fileID: 1159307699}
+  bestPlayerNameAndTime: {fileID: 1999235159}
   gameOverMenu: {fileID: 218755021}
 --- !u!4 &940389728
 Transform:
@@ -2611,7 +2611,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Best Player : Best Score'
+  m_text: 'Best Player : Best TIme'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

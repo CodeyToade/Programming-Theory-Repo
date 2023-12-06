@@ -14,7 +14,7 @@ public class LoadGameRankScript : MonoBehaviour
         LoadGameRank();
     }
 
-    public virtual void SetBestPlayer()
+    private void SetBestPlayer()
     {
         if (bestPlayer == null && bestTime == 0)
         {
